@@ -1,34 +1,22 @@
-import * as http from "http";
-import * as fs from "fs"
-import { IncomingMessage, ServerResponse } from "http";
 import * as dotenv from "dotenv";
+import { Request, Response, NextFunction } from "express";
 dotenv.config();
 
 const express = require("express");
 const app = express();
-
-app.set("view-engine", "ejs")
-
 app.use(express.json());
-
-// Create Server
-
 const port = 3000;
 
-const server = http.createServer((req: IncomingMessage, res: ServerResponse) => {
-    res.writeHead(200, { "Content-Type": "text/ejs" })
-    fs.readFile("./views/index.ejs", function(error, data) {
-        if (error) {
-            res.writeHead(404)
-            res.write("Error: File Not Found")
-        } else {
-            res.write(data);
-        }
-        res.end();
-    })
-});
+app.set("view engine", "ejs")
 
-server.listen(port, (error?: Error) => {
+app.get("/", (req: Request, res: Response) => {
+    res.render("index")
+})
+
+const authenticateRouter = require("./routes/authenticate.js");
+app.use("/auth", authenticateRouter)
+
+app.listen(port, (error?: Error) => {
     if (error) {
         console.log("Something went wrong", error);
     } else {
@@ -36,6 +24,4 @@ server.listen(port, (error?: Error) => {
     }
 });
 
-import * as testRouter from "./routes/test.js";
 
-app.use("/test", testRouter)
