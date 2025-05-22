@@ -17,16 +17,7 @@ type Post = {
     title: string;
 };
   
-const posts: Post[] = [
-    {
-        username: "Bailey",
-        title: "Test"
-    },
-    {
-        username: "Isabella",
-        title: "Test 2"
-    }
-];
+let posts: Post[] = [];
 
 app.get("/posts", authenticateToken, (req: AuthenticatedRequest, res: Response) => {
     res.json(posts.filter(post => post.username === (req.user as any).name));

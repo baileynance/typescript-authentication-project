@@ -1,11 +1,37 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var http = require("http");
+var fs = require("fs");
 var jwt = require("jsonwebtoken");
 var dotenv = require("dotenv");
 dotenv.config();
 var express = require("express");
 var app = express();
 app.use(express.json());
+// Create Server
+var port = 3000;
+var server = http.createServer(function (req, res) {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    fs.readFile("index.html", function (error, data) {
+        if (error) {
+            res.writeHead(404);
+            res.write("Error: File Not Found");
+        }
+        else {
+            res.write(data);
+        }
+        res.end();
+    });
+});
+server.listen(port, function (error) {
+    if (error) {
+        console.log("Something went wrong", error);
+    }
+    else {
+        console.log("Server is listening on port ".concat(port));
+    }
+});
+// Authenticate
 var refreshTokens = [];
 app.post("/token", function (req, res) {
     var refreshToken = req.body.token;
@@ -42,6 +68,21 @@ app.post("/login", function (req, res) {
 function generateAccessToken(user) {
     return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "20s" });
 }
-app.listen(4000, function () {
-    console.log("Server running on http://localhost:4000");
+var posts = [];
+app.get("/posts", authenticateToken, function (req, res) {
+    res.json(posts.filter(function (post) { return post.username === req.user.name; }));
 });
+function authenticateToken(req, res, next) {
+    var authHeader = req.headers["authorization"];
+    var token = authHeader && authHeader.split(" ")[1];
+    if (token == null) {
+        return res.sendStatus(401);
+    }
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, function (err, user) {
+        if (err) {
+            return res.sendStatus(403);
+        }
+        req.user = user;
+        next();
+    });
+}

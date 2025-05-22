@@ -4,8 +4,9 @@
   "description": "In order to become more efficient with front-end development, specifically in reference to developing JavaScript based programs, TypeScript is a skill that I have wanted to become more accustom to utilizing. TypeScript based programs allow the developer to find type errors and errors in logic early, so that debugging and integration issues will occur less often. This is a vital skill that any front end developer should have, therfore I have created a personal project to allow myself to polish these skills.",
   "main": "helloworld.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "start2": "nodemon authServer.js",
+    "start": "nodemon app.js",
+    "start2": "nodemon server.js",
+    "start3": "nodemon authServer.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
