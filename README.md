@@ -20,3 +20,10 @@ The languages used to display on the front end will be JavaScript and HTML
 
 TypeScript Tutorial - https://www.typescripttutorial.net/
 
+# Future Work
+
+{Make a list of things that you need to fix, improve, and add in the future.}
+
+- Item 1
+- Item 2
+- Item 3
