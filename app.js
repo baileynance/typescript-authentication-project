@@ -12,6 +12,8 @@ app.get("/", function (req, res) {
 });
 var loginRouter = require("./routes/login.js");
 app.use("/login", loginRouter);
+var signupRouter = require("./routes/signup.js");
+app.use("/signup", signupRouter);
 app.listen(port, function (error) {
     if (error) {
         console.log("Something went wrong", error);

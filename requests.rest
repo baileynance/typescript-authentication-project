@@ -1,5 +1,5 @@
-GET http://localhost:3000/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQmFpbGV5IiwiaWF0IjoxNzQ3OTM2OTU4LCJleHAiOjE3NDc5MzY5Nzh9.II6Ou4f9ThmZca8wj24pWVE_udxy9Yioc8Is-20wcjg
+GET http://localhost:3000/login/accounts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQmFpbGV5IiwiaWF0IjoxNzQ3OTUxNzQwfQ.yQd9_LX1sjf_mt0FEtHCK0gSL8AMcMP_HA1hL6PRdBk
 
 ###
 
@@ -12,9 +12,17 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3000/login
+GET http://localhost:3000/signup
+
+###
+
+POST http://localhost:3000/signup
 Content-Type: application/json
 
 {
-    "username": "Bailey"
+    "firstName": "Test",
+    "lastName": "test",
+    "username": "test",
+    "email": "test@gmail.com",
+    "password": "test"
 }

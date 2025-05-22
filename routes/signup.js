@@ -36,7 +36,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var jwt = require("jsonwebtoken");
 var dotenv = require("dotenv");
 var fs = require("fs/promises");
 dotenv.config();
@@ -62,32 +61,11 @@ loadAccounts().catch(function (err) {
     console.error("Failed to load accounts:", err);
 });
 router.get("/", function (req, res) {
-    res.render("login");
-});
-router.get("/accounts", authenticateToken, function (req, res) {
-    res.json(accounts.filter(function (account) { return account.firstName === req.user.name; }));
+    res.render("signup");
 });
 router.post("/", function (req, res) {
-    // Authenticate
-    var username = req.body.username;
-    var user = {
-        name: username
-    };
-    var accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-    res.json({ accessToken: accessToken });
+    var user = { firstName: req.body.firstName, lastName: req.body.lastName, username: req.body.username, email: req.body.email, password: req.body.password };
+    accounts.push(user);
+    res.status(201).send("User created successfully!");
 });
-function authenticateToken(req, res, next) {
-    var authHeader = req.headers["authorization"];
-    var token = authHeader && authHeader.split(" ")[1];
-    if (token == null) {
-        return res.sendStatus(401);
-    }
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, function (err, user) {
-        if (err) {
-            return res.sendStatus(403);
-        }
-        req.user = user;
-        next();
-    });
-}
 module.exports = router;

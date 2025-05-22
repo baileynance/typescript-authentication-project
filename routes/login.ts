@@ -1,33 +1,43 @@
 import { Request, Response, NextFunction } from "express";
 import * as jwt from "jsonwebtoken";
 import * as dotenv from "dotenv";
+import * as fs from "fs/promises";
 dotenv.config();
-
 const express = require("express");
 const router = express.Router();
-
 router.use(express.json());
 
 interface AuthenticatedRequest extends Request {
     user?: string | jwt.JwtPayload;
 }
 
-type Post = {
-    username: string;
-    title: string;
+type Account = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
 };
 
-let posts: Post[] = [];
+let accounts: Account[] = [];
+
+async function loadAccounts() {
+    const data = await fs.readFile("./data/accounts.json", "utf-8");
+    accounts = JSON.parse(data);
+}
+
+loadAccounts().catch(err => {
+    console.error("Failed to load accounts:", err);
+});
 
 router.get("/", (req: Request, res: Response) => {
     res.render("login")
 })
 
-router.get("/posts", authenticateToken, (req: AuthenticatedRequest, res: Response) => {
-    res.json(posts.filter(post => post.username === (req.user as any).name));
+router.get("/accounts", authenticateToken, (req: AuthenticatedRequest, res: Response) => {
+    res.json(accounts.filter(account => account.firstName === (req.user as any).name));
 })
 
-router.post("/login", (req: Request, res:Response) => {
+router.post("/", (req: Request, res:Response) => {
     // Authenticate
 
     const username: string = req.body.username;

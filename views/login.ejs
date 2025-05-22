@@ -9,24 +9,18 @@
 </head>
 
 <body>
-    <form>
-        <label for="f-name">
-            First Name:
-            <input id="f-name" type="text" required>
-        </label>
-        <label for="l-name">
-            Last Name:
-            <input id="l-name" type="text" required>
-        </label>
-        <label for="email">
-            Email:
-            <input id="email" type="email" required>
+    <form method="POST" action="index">
+        <label for="usernam">
+            Username:
+            <input id="username" type="text">
         </label>
         <label for="password">
             Password:
-            <input id="password" type="password" required>
+            <input id="password" type="password">
         </label>
+        <button type="submit">Login</button>
     </form>
+    <a href="signup"><button>Create Account</button></a>
 </body>
 
 </html>
