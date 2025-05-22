@@ -10,8 +10,8 @@ app.set("view engine", "ejs");
 app.get("/", function (req, res) {
     res.render("index");
 });
-var authenticateRouter = require("./routes/authenticate.js");
-app.use("/auth", authenticateRouter);
+var loginRouter = require("./routes/login.js");
+app.use("/login", loginRouter);
 app.listen(port, function (error) {
     if (error) {
         console.log("Something went wrong", error);

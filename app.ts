@@ -13,8 +13,8 @@ app.get("/", (req: Request, res: Response) => {
     res.render("index")
 })
 
-const authenticateRouter = require("./routes/authenticate.js");
-app.use("/auth", authenticateRouter)
+const loginRouter = require("./routes/login.js");
+app.use("/login", loginRouter)
 
 app.listen(port, (error?: Error) => {
     if (error) {
