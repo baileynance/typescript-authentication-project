@@ -1,28 +1,20 @@
-GET http://localhost:3000/login/accounts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQmFpbGV5IiwiaWF0IjoxNzQ3OTUxNzQwfQ.yQd9_LX1sjf_mt0FEtHCK0gSL8AMcMP_HA1hL6PRdBk
+GET http://localhost:3000/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQmFpbGV5IiwiaWF0IjoxNzQ3OTU4MDYwLCJleHAiOjE3NDc5NTgwODB9.O86948-Pb2Isun8togfrPuuHuENjLxJhR2rwTu3L55Y
 
 ###
 
-POST http://localhost:3000/token
+POST http://localhost:4000/token
 Content-Type: application/json
 
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQmFpbGV5IiwiaWF0IjoxNzQ3OTM2ODkzfQ.CLZvgNQS6rwoQwDK04YZ6FJq44taqvABDZicsX9iHjs"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQmFpbGV5IiwiaWF0IjoxNzQ3OTU4MDE4fQ.SF9HX4ftieMUSp-REtZ2WpEd3sb9EQmYlfz8IFT6gdg"
 }
 
 ###
 
-GET http://localhost:3000/signup
-
-###
-
-POST http://localhost:3000/signup
+POST http://localhost:4000/login
 Content-Type: application/json
 
 {
-    "firstName": "Test",
-    "lastName": "test",
-    "username": "test",
-    "email": "test@gmail.com",
-    "password": "test"
+    "username": "Bailey"
 }

@@ -6,7 +6,7 @@ The project will be to write a software that authenticates a user when registeri
 
 My purpose for wanting to create this project is to showcase my ability to use TypeScript in real world scenarios. Security is one the biggest concerns in the software development world. Developing this project has allowed me to expand my skillbase and become more value to any company looking for a developer who knows both TypeScript functionality and security development in software.
 
-Video: https://youtu.be/s45QloqXSs0
+Video: https://youtu.be/pdTIU7_WSf8
 
 # Development Environment
 
@@ -19,11 +19,11 @@ The languages used to display on the front end will be JavaScript and HTML
 # Useful Websites
 
 TypeScript Tutorial - https://www.typescripttutorial.net/
+Authentication Tutorial - https://codewithpawan.medium.com/authentication-and-authorization-in-node-js-a-comprehensive-guide-2755b57dce27
+NodeJs - https://nodejs.org/en/learn/getting-started/introduction-to-nodejs
 
 # Future Work
 
-{Make a list of things that you need to fix, improve, and add in the future.}
-
-- Item 1
-- Item 2
-- Item 3
+- I will need to implmenet it into a working website rather than juust showing off the functionality
+- I will need to connect the information to a database so that the information is more secure and accessible
+- I will need to implement more error handling
